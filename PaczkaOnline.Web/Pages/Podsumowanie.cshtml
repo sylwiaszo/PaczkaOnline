@@ -1,0 +1,22 @@
+﻿@page "/Podsumowanie/{KodPaczki}"
+@model PaczkaOnline.Web.Pages.PodsumowanieModel
+@{
+    ViewData["Title"] = "Wyslij";
+}
+
+<div class="row my-4">
+    <div class="col">
+        <div class="jumbotron bg-dark">
+            <h1 class="display-4 text-white font-weight">Udało Ci się wysłać paczkę!</h1>
+            <p class="lead text-white">
+                Poniższy kod służy do śledzenia Twojej paczki,
+                użyj wyszukiwarki na górze strony, bądź wprowadź kod po znaku "/" w adresie naszej strony.
+            </p>
+            <h2 class="text-white font-weight-bold">@RouteData.Values["KodPaczki"]</h2>
+            <hr class="my-4">
+            <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/Wysylam">Wysyłam Kolejną Paczkę</a>
+            <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/">Powrót</a>
+        </div>
+    </div>
+</div>
+

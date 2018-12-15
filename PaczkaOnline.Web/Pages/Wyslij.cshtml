@@ -1,0 +1,80 @@
+﻿@page "/Wysylam"
+@model PaczkaOnline.Web.Pages.WyslijModel
+@{
+    ViewData["Title"] = "Wyslij";
+}
+
+<div class="row my-4">
+    <div class="col">
+        <form method="post">
+            <div class="jumbotron bg-dark">
+                <h3 class="text-white display-4">Powiedz nam coś o sobie:</h3>
+                <div class="form-group">
+                    <label for="Email" class="text-white">Adres e-mail:</label>
+                    <input type="email" class="form-control" id="Email" name="Email" aria-describedby="emailPomoc" placeholder="Wprowadź adres">
+                    <small id="emailPomoc" class="form-text text-light">Na podany adres otrzymasz dokument do naklejenia na paczkę.</small>
+                </div>
+                <div class="form-group">
+                    <label for="Telefon" class="text-white">Numer telefonu:</label>
+                    <input type="text" class="form-control" id="Telefon" name="Telefon" placeholder="Twój numer telefonu">
+                    <small id="telefonPomoc" class="form-text text-muted">Na podany numer otrzymasz aktualny stan paczki.</small>
+                </div>
+            </div>
+            <div class="jumbotron bg-dark">
+                <h3 class="text-white display-4 font-weight">Powiedz nam coś o swojej paczce:</h3>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="ImieOdbiorcy" class="text-white">Imię odbiorcy:</label>
+                            <input type="text" class="form-control" id="ImieOdbiorcy" name="ImieOdbiorcy">
+                            <small id="imiePomoc" class="form-text text-muted">Imię osoby która czeka na Twoją paczkę</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="NazwiskoOdbiorcy" class="text-white">Nazwisko odbiorcy:</label>
+                            <input type="text" class="form-control" id="NazwiskoOdbiorcy" name="NazwiskoOdbiorcy">
+                            <small id="nazwiskoPomoc" class="form-text text-muted">Nazwisko osoby która czeka na Twoją paczkę</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="TelefonOdbiorcy" class="text-white">Telefon:</label>
+                            <input type="text" class="form-control" id="TelefonOdbiorcy" name="TelefonOdbiorcy">
+                            <small id="telefonOdbiorcyPomoc" class="form-text text-muted">Telefon osoby która czeka na Twoją paczkę</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="EmailOdbiorcy" class="text-white">Email:</label>
+                            <input type="email" class="form-control" id="EmailOdbiorcy" name="EmailOdbiorcy">
+                            <small id="emailOdbiorcyPomoc" class="form-text text-muted">Telefon osoby która czeka na Twoją paczkę</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="MiastoOdbiorcy" class="text-white">Miasto:</label>
+                            <input type="text" class="form-control" id="MiastoOdbiorcy" name="MiastoOdbiorcy">
+                            <small id="miastoOdbiorcyPomoc" class="form-text text-muted">Miejscowość, gdzie mamy dostarczyć Twoją przesyłkę</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="KodPocztowyOdbiorcy" class="text-white">Kod-Pocztowy:</label>
+                            <input type="text" pattern="/d{3}-/d{2}" class="form-control" id="KodPocztowyOdbiorcy" name="KodPocztowyOdbiorcy">
+                            <small id="kodPocztowyOdbiorcyPomoc" class="form-text text-muted">Kod pocztowy miasta</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="UlicaOdbiorcy" class="text-white">Ulica:</label>
+                            <input type="text" class="form-control" id="MiastoOdbiorcy" name="UlicaOdbiorcy">
+                            <small id="ulicaOdbiorcyPomoc" class="form-text text-muted">Ulica, gdzie mamy dostarczyć Twoją przesyłkę</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="NumerLokaluOdbiorcy" class="text-white">Lokal:</label>
+                            <input type="text" class="form-control" id="NumerLokaluOdbiorcy" name="NumerLokaluOdbiorcy">
+                            <small id="ulicaOdbiorcyPomoc" class="form-text text-muted">Lokal, pod którym ktoś czeka na przesyłkę</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="regulamin">
+                <label class="form-check-label" for="regulamin">Zapoznałem się z regulaminem</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Nadaj</button>
+        </form>
+    </div>
+</div>
+

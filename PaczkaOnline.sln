@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PaczkaOnline.BazaDanych", "PaczkaOnline.BazaDanych\PaczkaOnline.BazaDanych.sqlproj", "{FDA1AE77-B249-435C-9D70-BF928F5E2872}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaczkaOnline.Web", "PaczkaOnline.Web\PaczkaOnline.Web.csproj", "{B15F6E23-11F4-4A7D-BBE2-49555DBC206E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{FDA1AE77-B249-435C-9D70-BF928F5E2872}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDA1AE77-B249-435C-9D70-BF928F5E2872}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FDA1AE77-B249-435C-9D70-BF928F5E2872}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B15F6E23-11F4-4A7D-BBE2-49555DBC206E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B15F6E23-11F4-4A7D-BBE2-49555DBC206E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B15F6E23-11F4-4A7D-BBE2-49555DBC206E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B15F6E23-11F4-4A7D-BBE2-49555DBC206E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
