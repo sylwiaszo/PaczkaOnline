@@ -1,14 +1,15 @@
-﻿@page
+﻿@page "/{KodPaczki?}"
 @model PocztaOnline.Aplikacja.Pages.IndexModel
 @{
     ViewData["Title"] = "Strona Główna";
 }
+
 <div class="jumbotron pelny-ekran my-0" style="background-image:url('/images/kurier.jpg'); position:absolute; left: 0; top:0;">
     <h1 class="display-4 text-white font-weight">Poczta Online</h1>
     <p class="lead text-white">Błyskawicznie nadaj nową paczkę lub sprawdź gdzie jest Twoja paczka!</p>
     <hr class="my-4">
     <p class="text-white font-weight-bold">Użyj tych przycisków aby szybko wysłać paczkę lub podejrzeć, <br /> gdzie aktualnie znajduje się paczka na którą czekasz.</p>
     <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/Wysylam">Wysyłam Paczkę</a>
-    <button class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien">Czekam na paczkę</button>
+    <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/Czekam">Czekam na Paczkę</a>
 </div>
 

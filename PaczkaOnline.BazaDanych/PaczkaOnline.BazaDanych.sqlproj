@@ -68,14 +68,11 @@
     <Build Include="Tabele\Nadawcy.sql" />
     <Build Include="Tabele\Odbiorcy.sql" />
     <Build Include="Tabele\Lokalizacje.sql" />
-    <Build Include="Tabele\Polaczenia.sql" />
-    <Build Include="Tabele\Trasy.sql" />
     <Build Include="Procedury\DodajNadawce.sql" />
     <Build Include="Procedury\DodajPaczke.sql" />
     <Build Include="Procedury\DodajOdbiorce.sql" />
     <Build Include="Procedury\AktualizujStatusPaczki.sql" />
     <Build Include="Procedury\AktualizujLokalizacjePaczki.sql" />
-    <Build Include="Procedury\GenerujTrasePaczki.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Dane\DodajLokalizacje.sql" />

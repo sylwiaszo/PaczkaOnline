@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PaczkaOnline.Web;
+using Microsoft.EntityFrameworkCore;
 
 namespace PocztaOnline.Aplikacja
 {
@@ -22,6 +24,7 @@ namespace PocztaOnline.Aplikacja
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<BazaDanych>(opt => opt.UseSqlServer("Data Source=DESKTOP-G7VBEC5;Initial Catalog=PaczkaOnline.BazaDanych;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

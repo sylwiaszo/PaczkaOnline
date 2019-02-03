@@ -10,12 +10,17 @@ namespace PaczkaOnline.Web.Pages
 {
     public class WyslijModel : PageModel
     {
+        private readonly BazaDanych db;
+
+        public WyslijModel(BazaDanych db)
+        {
+            this.db = db;
+        }
+
         [BindProperty]
         public string Email { get; set; }
         [BindProperty]
         public string Telefon { get; set; }
-
-
         [BindProperty]
         public string ImieOdbiorcy { get; set; }
         [BindProperty]
@@ -41,7 +46,9 @@ namespace PaczkaOnline.Web.Pages
         public IActionResult OnPost()
         {
             var wygenerowanyKodPaczki = Guid.NewGuid().ToString().Split('-')[0].ToUpper();
-            return RedirectToPage("/Podsumowanie", new { KodPaczki = wygenerowanyKodPaczki });
+            var idNadawcy = db.DodajNadawce(Email, Telefon);
+            db.DodajPaczke();
+            return RedirectToPage("/Podsumowanie", new { KodPaczki = idNadawcy });
         }
     }
 }

@@ -964,7 +964,8 @@
 ('01-131', 'Warszawa'),
 ('01-132', 'Warszawa'),
 ('01-133', 'Warszawa'),
-('01-134', 'Warszawa'),
+('01-134', 'Warszawa')
+INSERT INTO [Lokalizacje] VALUES
 ('01-135', 'Warszawa'),
 ('01-136', 'Warszawa'),
 ('01-137', 'Warszawa'),
@@ -1951,7 +1952,8 @@
 ('02-339', 'Warszawa'),
 ('02-340', 'Warszawa'),
 ('02-341', 'Warszawa'),
-('02-342', 'Warszawa'),
+('02-342', 'Warszawa')
+INSERT INTO [Lokalizacje] VALUES
 ('02-343', 'Warszawa'),
 ('02-344', 'Warszawa'),
 ('02-345', 'Warszawa'),
@@ -2917,7 +2919,8 @@
 ('03-488', 'Warszawa'),
 ('03-489', 'Warszawa'),
 ('03-490', 'Warszawa'),
-('03-501', 'Warszawa'),
+('03-501', 'Warszawa')
+INSERT INTO [Lokalizacje] VALUES
 ('03-502', 'Warszawa'),
 ('03-503', 'Warszawa'),
 ('03-504', 'Warszawa'),
@@ -3904,7 +3907,8 @@
 ('04-692', 'Warszawa'),
 ('04-693', 'Warszawa'),
 ('04-694', 'Warszawa'),
-('04-695', 'Warszawa'),
+('04-695', 'Warszawa')
+INSERT INTO [Lokalizacje] VALUES
 ('04-696', 'Warszawa'),
 ('04-697', 'Warszawa'),
 ('04-701', 'Warszawa'),

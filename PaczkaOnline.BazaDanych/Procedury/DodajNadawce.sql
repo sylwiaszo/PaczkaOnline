@@ -1,14 +1,15 @@
 ﻿CREATE PROCEDURE [dbo].[DodajNadawce]
-	@Imie NCHAR(25), 
-    @Nazwisko NCHAR(25), 
     @Email NCHAR(30), 
-    @Telefon NCHAR(12), 
-    @Miasto NCHAR(30), 
-    @KodPocztowy NCHAR(6), 
-    @Ulica NCHAR(50), 
-    @NumerLokalu NCHAR(8) NULL
+    @Telefon NCHAR(12),
+    @IdNadawcy INT OUT 
 AS
-	INSERT INTO [Nadawcy] VALUES (@Imie, @Nazwisko, @Email, @Telefon, @Miasto, @KodPocztowy, @Ulica, @NumerLokalu)
+
+SET @idNadawcy = (SELECT Id FROM [Nadawcy] WHERE Email = @Email and Telefon = @Telefon);
+
+IF (@idNadawcy IS NOT NULL)
+	RETURN @idNadawcy;
+ELSE
+	INSERT INTO [Nadawcy] (Email, Telefon) VALUES (@Email, @Telefon);
 
 	RETURN SCOPE_IDENTITY()
 	

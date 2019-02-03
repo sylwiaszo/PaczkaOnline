@@ -2,12 +2,14 @@
 	@Imie NCHAR(25), 
     @Nazwisko NCHAR(25), 
     @Email NCHAR(30), 
-    @Telefon NCHAR(12), 
-    @Miasto NCHAR(30), 
-    @KodPocztowy NCHAR(6), 
-    @Ulica NCHAR(50), 
-    @NumerLokalu NCHAR(8) NULL
+    @Telefon NCHAR(12),
+    @idOdbiorcy INT OUT
 AS
-	INSERT INTO [Odbiorcy] VALUES (@Imie, @Nazwisko, @Email, @Telefon, @Miasto, @KodPocztowy, @Ulica, @NumerLokalu)
+SET @idOdbiorcy = (SELECT Id FROM [Odbiorcy] WHERE Email = @Email and Telefon = @Telefon);
+
+IF (@idOdbiorcy IS NOT NULL)
+	RETURN @idOdbiorcy;
+ELSE
+	INSERT INTO [Odbiorcy] (Imie, Nazwisko, Email, Telefon) VALUES (@Imie, @Nazwisko, @Email, @Telefon)
 	
 	RETURN SCOPE_IDENTITY()

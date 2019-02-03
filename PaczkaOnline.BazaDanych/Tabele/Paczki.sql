@@ -1,10 +1,9 @@
 ﻿CREATE TABLE [dbo].[Paczki]
 (
-    [Id] UNIQUEIDENTIFIER NOT NULL, 
+    [Id] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
     [Nadawca] INT NOT NULL, 
     [Odbiorca] INT NOT NULL, 
-    [Trasa] INT NOT NULL, 
-    [Lokalizacja] NCHAR(6) NOT NULL, 
+    [Lokalizacja] NCHAR(6) NULL DEFAULT 00-000, 
     [CzasNadania] DATETIME NOT NULL, 
     [Dostarczona] BIT NULL DEFAULT 0, 
     CONSTRAINT [PK_Paczki] PRIMARY KEY ([Id]), 

@@ -1,7 +1,17 @@
 ﻿<nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand text-white">Poczta Online</a>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Numer paczki" aria-label="Numer Paczki">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Sprawdź paczkę</button>
+    <form id="szukajPaczkiForm" class="form-inline">
+        <input id="szukajPaczkiId" class="form-control mr-sm-2" type="search" placeholder="Numer paczki" aria-label="Numer Paczki">
+        <button id="szukajPaczkiBtn" class="btn btn-outline-light my-2 my-sm-0" type="submit">Sprawdź paczkę</button>
     </form>
 </nav>
+
+<script>
+    var wyslijFormularz = function (event) {
+        event.preventDefault();
+        window.location.assign("/Czekam/" + document.querySelector("#szukajPaczkiId").value);
+    }
+
+    document.querySelector("#szukajPaczkiForm").addEventListener("submit", wyslijFormularz);
+
+</script>
