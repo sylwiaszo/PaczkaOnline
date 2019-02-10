@@ -47,8 +47,10 @@ namespace PaczkaOnline.Web.Pages
         {
             var wygenerowanyKodPaczki = Guid.NewGuid().ToString().Split('-')[0].ToUpper();
             var idNadawcy = db.DodajNadawce(Email, Telefon);
-            db.DodajPaczke();
-            return RedirectToPage("/Podsumowanie", new { KodPaczki = idNadawcy });
+            var idOdbiorcy = db.DodajOdbiorce(ImieOdbiorcy, NazwiskoOdbiorcy, EmailOdbiorcy, TelefonOdbiorcy);
+            var kodPaczki = db.DodajPaczke(idNadawcy, idOdbiorcy, MiastoOdbiorcy, UlicaOdbiorcy, KodPocztowyOdbiorcy, NumerLokaluOdbiorcy);
+
+            return RedirectToPage("/Podsumowanie", new { KodPaczki = kodPaczki });
         }
     }
 }

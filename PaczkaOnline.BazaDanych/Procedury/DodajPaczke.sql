@@ -1,8 +1,17 @@
 ﻿CREATE PROCEDURE [dbo].[DodajPaczke]
     @Nadawca INT, 
     @Odbiorca INT,
-	@Id UNIQUEIDENTIFIER OUT
+    @Miasto VARCHAR(30),
+    @KodPocztowy NCHAR(6),
+    @Ulica VARCHAR(30),
+    @Lokal VARCHAR(5),
+	@Id VARCHAR(36) OUT
 AS
-	SET @Id = NEWID()
-	INSERT INTO [Paczki] (Id, Nadawca, Odbiorca, CzasNadania) VALUES (@Id, @Nadawca, @Odbiorca, GETDATE())
+DECLARE @ID_GUID UNIQUEIDENTIFIER;
+SET @ID_GUID = NEWID();
+	
+	INSERT INTO [Paczki] (Id, Nadawca, Odbiorca, CzasNadania, Miasto, KodPocztowy, Ulica, Lokal) 
+	VALUES (@ID_GUID, @Nadawca, @Odbiorca, GETDATE(), @Miasto, @KodPocztowy, @Ulica, @Lokal)
+
+	SET @Id = CONVERT(VARCHAR(36), @ID_GUID)
 	

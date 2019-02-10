@@ -7,16 +7,26 @@
 <div class="row my-4">
     <div class="col">
         <div class="jumbotron bg-dark">
+
             @if (RouteData.Values["KodPaczki"] == null)
             {
-                <p>Wprowadz kod paczki</p>
+                <h3 class="text-white display-4">Wprowadź kod paczki:</h3>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="KodPaczki2" class="text-white">Kod paczki:</label>
+                        <input type="text" class="form-control" id="KodPaczki2" name="KodPaczki2" aria-describedby="KodPaczki2Pomoc" placeholder="Twój kod paczki">
+                        <small id="KodPaczki2Pomoc" class="form-text text-light">Kod, który otrzymałeś od osoby, która wysyła do Ciebie przedmiot.</small>
+                    </div>
+                    
+                    <button class="btn btn-success" type="submit">Sprawdź</button>
+                </form>
             }
             else
             {
                 <p>Znaleziona paczka - @RouteData.Values["KodPaczki"]</p>
+                <p>@Model.Dane</p>
+                <p>@Model.KodPaczki2</p>
             }
-            <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/Wysylam">Wysyłam Kolejną Paczkę</a>
-            <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/">Powrót</a>
         </div>
     </div>
 </div>

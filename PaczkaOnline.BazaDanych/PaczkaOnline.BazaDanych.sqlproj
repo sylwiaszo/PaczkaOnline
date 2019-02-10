@@ -73,6 +73,7 @@
     <Build Include="Procedury\DodajOdbiorce.sql" />
     <Build Include="Procedury\AktualizujStatusPaczki.sql" />
     <Build Include="Procedury\AktualizujLokalizacjePaczki.sql" />
+    <Build Include="Procedury\PobierzPaczke.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Dane\DodajLokalizacje.sql" />
