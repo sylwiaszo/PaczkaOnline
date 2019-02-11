@@ -26,7 +26,9 @@
                 <div class="text-white">
                     <h1 class="display-4 text-white font-weight">Znaleziona paczka - @RouteData.Values["KodPaczki"]</h1>
                     <h1 class="display-5 text-white font-weight">Wysłana @ViewData["CzasNadania"]</h1>
-                    <h1 class="display-5 text-white font-weight">Paczka obecnie jest w @ViewData["Lokalizacja"]</h1>
+                    <h1 class="display-5 text-white font-weight">Paczka obecnie jest w @if (@ViewData["Lokalizacja"].ToString() == "00-000")
+                    {<span>Oczekuje na wysłanie</span> }
+                    else { ViewData["Lokalizacja"] }</h1>
                     <h1 class="display-4 text-white font-weight">Została wysłana do:</h1>
                     <h1 class="display-5 text-white font-weight">@ViewData["Miasto"]</h1>
                     <h1 class="display-5 text-white font-weight">@ViewData["KodPocztowy"]</h1>

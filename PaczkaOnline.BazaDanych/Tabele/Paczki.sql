@@ -7,7 +7,7 @@
 	[KodPocztowy] NCHAR(6) NOT NULL,
 	[Ulica] VARCHAR(30) NOT NULL,
 	[Lokal] VARCHAR(5) NULL,
-    [Lokalizacja] NCHAR(6) NULL DEFAULT 00-000, 
+    [Lokalizacja] NCHAR(6) NOT NULL DEFAULT 00-000, 
     [CzasNadania] DATETIME NOT NULL, 
     [Dostarczona] BIT NULL DEFAULT 0, 
     CONSTRAINT [PK_Paczki] PRIMARY KEY ([Id]), 
