@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -68,7 +69,7 @@ namespace PaczkaOnline.Web
             return idPaczki.Value.ToString();
         }
 
-        public string PobierzPaczke(string idPaczki)
+        public string PobierzPaczke(string idPaczki, ViewDataDictionary viewData)
         {
             var lokalizacja = new SqlParameter();
             lokalizacja.ParameterName = "@lokalizacja";
@@ -113,6 +114,13 @@ namespace PaczkaOnline.Web
                 kodPocztowy,
                 ulica,
                 lokal);
+
+            viewData.Add("Lokalizacja", lokalizacja.Value.ToString());
+            viewData.Add("CzasNadania", czasNadania.Value.ToString());
+            viewData.Add("Miasto", miasto.Value.ToString());
+            viewData.Add("KodPocztowy", kodPocztowy.Value.ToString());
+            viewData.Add("Ulica", ulica.Value.ToString());
+            viewData.Add("Lokal", lokal.Value.ToString());
 
             return lokalizacja.Value.ToString() + czasNadania.Value.ToString() + miasto.Value.ToString();
         }

@@ -25,6 +25,7 @@ namespace PocztaOnline.Aplikacja
         {
             services.AddMvc();
             services.AddDbContext<BazaDanych>(opt => opt.UseSqlServer("Data Source=DESKTOP-G7VBEC5;Initial Catalog=PaczkaOnline.BazaDanych;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            services.AddTransient<IWysylaczEmail, WysylaczEmail>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

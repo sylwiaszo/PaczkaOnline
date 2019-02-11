@@ -28,7 +28,7 @@ namespace PaczkaOnline.Web.Pages
             {
 
                 if (Guid.TryParse(RouteData.Values["KodPaczki"].ToString(), out Guid kodPaczki))
-                    Dane = db.PobierzPaczke(kodPaczki.ToString());
+                    Dane = db.PobierzPaczke(kodPaczki.ToString(), this.ViewData);
             }
         }
 

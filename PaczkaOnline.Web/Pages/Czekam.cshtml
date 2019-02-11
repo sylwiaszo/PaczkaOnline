@@ -17,15 +17,26 @@
                         <input type="text" class="form-control" id="KodPaczki2" name="KodPaczki2" aria-describedby="KodPaczki2Pomoc" placeholder="Twój kod paczki">
                         <small id="KodPaczki2Pomoc" class="form-text text-light">Kod, który otrzymałeś od osoby, która wysyła do Ciebie przedmiot.</small>
                     </div>
-                    
+
                     <button class="btn btn-success" type="submit">Sprawdź</button>
                 </form>
             }
             else
             {
-                <p>Znaleziona paczka - @RouteData.Values["KodPaczki"]</p>
-                <p>@Model.Dane</p>
-                <p>@Model.KodPaczki2</p>
+                <div class="text-white">
+                    <h1 class="display-4 text-white font-weight">Znaleziona paczka - @RouteData.Values["KodPaczki"]</h1>
+                    <h1 class="display-5 text-white font-weight">Wysłana @ViewData["CzasNadania"]</h1>
+                    <h1 class="display-5 text-white font-weight">Paczka obecnie jest w @ViewData["Lokalizacja"]</h1>
+                    <h1 class="display-4 text-white font-weight">Została wysłana do:</h1>
+                    <h1 class="display-5 text-white font-weight">@ViewData["Miasto"]</h1>
+                    <h1 class="display-5 text-white font-weight">@ViewData["KodPocztowy"]</h1>
+                    <h1 class="display-5 text-white font-weight">@ViewData["Ulica"]</h1>
+                    <h1 class="display-5 text-white font-weight">@ViewData["Lokal"]</h1>
+                    <hr class="my-4">
+                    <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/">Powrót</a>
+
+
+                </div>
             }
         </div>
     </div>

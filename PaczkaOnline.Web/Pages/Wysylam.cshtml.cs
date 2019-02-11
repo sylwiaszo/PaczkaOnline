@@ -11,10 +11,12 @@ namespace PaczkaOnline.Web.Pages
     public class WyslijModel : PageModel
     {
         private readonly BazaDanych db;
+        private readonly IWysylaczEmail email;
 
-        public WyslijModel(BazaDanych db)
+        public WyslijModel(BazaDanych db, IWysylaczEmail email)
         {
             this.db = db;
+            this.email = email;
         }
 
         [BindProperty]
@@ -50,7 +52,8 @@ namespace PaczkaOnline.Web.Pages
             var idOdbiorcy = db.DodajOdbiorce(ImieOdbiorcy, NazwiskoOdbiorcy, EmailOdbiorcy, TelefonOdbiorcy);
             var kodPaczki = db.DodajPaczke(idNadawcy, idOdbiorcy, MiastoOdbiorcy, UlicaOdbiorcy, KodPocztowyOdbiorcy, NumerLokaluOdbiorcy);
 
-            return RedirectToPage("/Podsumowanie", new { KodPaczki = kodPaczki });
+            email.Wyslij(EmailOdbiorcy, kodPaczki);
+            return RedirectToPage("/Podsumowanie", new { KodPaczki = kodPaczki, Email = EmailOdbiorcy });
         }
     }
 }
