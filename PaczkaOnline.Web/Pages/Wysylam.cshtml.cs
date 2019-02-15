@@ -12,6 +12,7 @@ namespace PaczkaOnline.Web.Pages
     {
         private readonly BazaDanych db;
         private readonly IWysylaczEmail email;
+        private readonly KodKreskowyGenerator generatorKodKreskowy;
 
         public WyslijModel(BazaDanych db, IWysylaczEmail email)
         {

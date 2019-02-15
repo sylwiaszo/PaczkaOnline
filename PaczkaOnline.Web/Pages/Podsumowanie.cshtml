@@ -13,7 +13,12 @@
                 Poniższy kod służy do śledzenia Twojej paczki,
                 użyj wyszukiwarki na górze strony, bądź wprowadź kod po znaku "/" w adresie naszej strony.
             </p>
-            <h2 class="text-white font-weight-bold">@RouteData.Values["KodPaczki"]</h2>
+            <h4 class="text-white">@RouteData.Values["KodPaczki"]</h4>
+            <image src="@ViewData.FirstOrDefault(dt => dt.Key == "KodKreskowy").Value"></image>
+            <p class="lead text-white">
+               Wydrukuj poniższy kod kreskowy i przyklej na paczkę. Umożliwi nam to śledzenie i informowanie adresata o tym, 
+                gdzie jest jego paczka.
+            </p>
             <hr class="my-4">
             <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/Wysylam">Wysyłam Kolejną Paczkę</a>
             <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/">Powrót</a>

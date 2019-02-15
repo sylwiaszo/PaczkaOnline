@@ -10,9 +10,19 @@ namespace PaczkaOnline.Web.Pages
 {
     public class PodsumowanieModel : PageModel
     {
+        public PodsumowanieModel(KodKreskowyGenerator kodKreskowyGenerator)
+        {
+            KodKreskowyGenerator = kodKreskowyGenerator;
+        }
+
+        public KodKreskowyGenerator KodKreskowyGenerator { get; }
+
         public void OnGet()
         {
-
+            if (RouteData.Values["KodPaczki"] != null)
+            {
+                ViewData.Add("KodKreskowy", KodKreskowyGenerator.Generuj(RouteData.Values["KodPaczki"].ToString()).Result);
+            }
         }
     }
 }
