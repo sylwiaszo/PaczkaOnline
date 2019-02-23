@@ -110,7 +110,7 @@ namespace PaczkaOnline.Web
                 new SqlParameter("@id", idPaczki),
                lokalizacja,
                 czasNadania,
-                miasto, 
+                miasto,
                 kodPocztowy,
                 ulica,
                 lokal);
@@ -123,6 +123,49 @@ namespace PaczkaOnline.Web
             viewData.Add("Lokal", lokal.Value.ToString());
 
             return lokalizacja.Value.ToString() + czasNadania.Value.ToString() + miasto.Value.ToString();
+        }
+
+        public void GenerujStatystyki(ViewDataDictionary viewData)
+        {
+            var wyslanoPaczek = new SqlParameter();
+            wyslanoPaczek.ParameterName = "@WyslanoPaczek";
+            wyslanoPaczek.DbType = DbType.Int32;
+            wyslanoPaczek.Direction = ParameterDirection.Output;
+
+            var paczekWDrodze = new SqlParameter();
+            paczekWDrodze.ParameterName = "@PaczekWDrodze";
+            paczekWDrodze.DbType = DbType.Int32;
+            paczekWDrodze.Direction = ParameterDirection.Output;
+
+            var dostarczonoPaczek = new SqlParameter();
+            dostarczonoPaczek.ParameterName = "@Dostarczono";
+            dostarczonoPaczek.DbType = DbType.Int32;
+            dostarczonoPaczek.Direction = ParameterDirection.Output;
+
+            var dostarczonoPaczekProcent = new SqlParameter();
+            dostarczonoPaczekProcent.ParameterName = "@DostarczonoProcent";
+            dostarczonoPaczekProcent.DbType = DbType.Int32;
+            dostarczonoPaczekProcent.Direction = ParameterDirection.Output;
+
+            var sredniCzasDostarczenia = new SqlParameter();
+            sredniCzasDostarczenia.ParameterName = "@SredniCzasDostarczenia";
+            sredniCzasDostarczenia.DbType = DbType.Int32;
+            sredniCzasDostarczenia.Direction = ParameterDirection.Output;
+
+
+
+            Database.ExecuteSqlCommand("execute GenerujStatystyki @WyslanoPaczek OUT, @PaczekWDrodze OUT, @Dostarczono OUT, @DostarczonoProcent OUT, @SredniCzasDostarczenia OUT",
+               wyslanoPaczek,
+                paczekWDrodze,
+                dostarczonoPaczek,
+                dostarczonoPaczekProcent,
+                sredniCzasDostarczenia);
+
+            viewData.Add("WyslanoPaczek", wyslanoPaczek.Value.ToString());
+            viewData.Add("PaczekWDrodze", paczekWDrodze.Value.ToString());
+            viewData.Add("Dostarczono", dostarczonoPaczek.Value.ToString());
+            viewData.Add("DostarczonoProcent", dostarczonoPaczekProcent.Value.ToString());
+            viewData.Add("SredniCzasDostarczenia", sredniCzasDostarczenia.Value.ToString());
         }
     }
 }

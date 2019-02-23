@@ -2,5 +2,5 @@
     @Paczka UNIQUEIDENTIFIER,
 	@Dostarczona bit
 AS
-	UPDATE [Paczki] SET [Dostarczona] = @Dostarczona WHERE [Id] = @Paczka
+	UPDATE [Paczki] SET [Dostarczona] = @Dostarczona, [CzasDostarczenia] = GETDATE() WHERE [Id] = @Paczka
 	

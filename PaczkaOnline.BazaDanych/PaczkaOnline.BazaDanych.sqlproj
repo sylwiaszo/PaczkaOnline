@@ -74,8 +74,12 @@
     <Build Include="Procedury\AktualizujStatusPaczki.sql" />
     <Build Include="Procedury\AktualizujLokalizacjePaczki.sql" />
     <Build Include="Procedury\PobierzPaczke.sql" />
+    <Build Include="Procedury\GenerujStatystyki.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Dane\DodajLokalizacje.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PublikujBaze.publish.xml" />
   </ItemGroup>
 </Project>

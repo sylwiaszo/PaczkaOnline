@@ -10,6 +10,7 @@
     [Lokalizacja] NCHAR(6) NOT NULL DEFAULT 00-000, 
     [CzasNadania] DATETIME NOT NULL, 
     [Dostarczona] BIT NULL DEFAULT 0, 
+    [CzasDostarczenia] DATETIME NULL, 
     CONSTRAINT [PK_Paczki] PRIMARY KEY ([Id]), 
     CONSTRAINT [FK_Paczki_Nadawcy] FOREIGN KEY ([Nadawca]) REFERENCES [Nadawcy]([Id]),
 	CONSTRAINT [FK_Paczki_Odbiorcy] FOREIGN KEY ([Odbiorca]) REFERENCES [Odbiorcy]([Id])
