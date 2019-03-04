@@ -54,7 +54,7 @@ namespace PaczkaOnline.Web.Pages
             var kodPaczki = db.DodajPaczke(idNadawcy, idOdbiorcy, MiastoOdbiorcy, UlicaOdbiorcy, KodPocztowyOdbiorcy, NumerLokaluOdbiorcy);
 
             email.Wyslij(EmailOdbiorcy, kodPaczki);
-            return RedirectToPage("/Podsumowanie", new { KodPaczki = kodPaczki, Email = EmailOdbiorcy });
+            return RedirectToPage("/Podsumowanie", new { KodPaczki = kodPaczki, KodPocztowy = KodPocztowyOdbiorcy, Email = EmailOdbiorcy });
         }
     }
 }

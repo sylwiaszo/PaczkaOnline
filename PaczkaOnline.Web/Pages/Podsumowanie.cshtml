@@ -1,4 +1,4 @@
-﻿@page "/Podsumowanie/{KodPaczki}/{Email}"
+﻿@page "/Podsumowanie/{KodPaczki}/{KodPocztowy}/{Email}"
 @model PaczkaOnline.Web.Pages.PodsumowanieModel
 @{
     ViewData["Title"] = "Wyslij";
@@ -8,7 +8,9 @@
     <div class="col">
         <div class="jumbotron bg-dark">
             <h1 class="display-4 text-white font-weight">Udało Ci się wysłać paczkę!</h1>
-            <h1 class="display-5 text-white font-weight">Wysłaliśmy powiadomienie na adres @RouteData.Values["Email"]</h1>
+            <h1 class="display-4 text-white font-weight">@RouteData.Values["KodPocztowy"], @ViewData["Miasto"]</h1>
+            <h1 class="display-4 text-white font-weight">@ViewData["Adres"], @ViewData["Wojewodztwo"]</h1>
+            <h1 class="display-5 text-white font-weight">Wysłaliśmy powiadomienie na adres @ViewData["Email"]</h1>
             <p class="lead text-white">
                 Poniższy kod służy do śledzenia Twojej paczki,
                 użyj wyszukiwarki na górze strony, bądź wprowadź kod po znaku "/" w adresie naszej strony.
@@ -16,7 +18,7 @@
             <h4 class="text-white">@RouteData.Values["KodPaczki"]</h4>
             <image src="@Model.KodKreskowy"></image>
             <p class="lead text-white">
-               Wydrukuj poniższy kod kreskowy i przyklej na paczkę. Umożliwi nam to śledzenie i informowanie adresata o tym, 
+                Wydrukuj poniższy kod kreskowy i przyklej na paczkę. Umożliwi nam to śledzenie i informowanie adresata o tym,
                 gdzie jest jego paczka.
             </p>
             <hr class="my-4">

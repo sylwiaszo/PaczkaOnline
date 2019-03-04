@@ -4,10 +4,10 @@
     @IdNadawcy INT OUT 
 AS
 
-SET @idNadawcy = (SELECT Id FROM [Nadawcy] WHERE Email = @Email and Telefon = @Telefon);
+SET @IdNadawcy = (SELECT Id FROM [Nadawcy] WHERE Email = @Email and Telefon = @Telefon);
 
-IF (@idNadawcy IS NOT NULL)
-	RETURN @idNadawcy;
+IF (@IdNadawcy IS NOT NULL)
+	RETURN @IdNadawcy;
 ELSE
 	INSERT INTO [Nadawcy] (Email, Telefon) VALUES (@Email, @Telefon);
 	SET @IdNadawcy = SCOPE_IDENTITY();

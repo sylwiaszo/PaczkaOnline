@@ -75,11 +75,16 @@
     <Build Include="Procedury\AktualizujLokalizacjePaczki.sql" />
     <Build Include="Procedury\PobierzPaczke.sql" />
     <Build Include="Procedury\GenerujStatystyki.sql" />
+    <Build Include="Procedury\PobierzLokalizacje.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="Dane\DodajLokalizacje.sql" />
+    <PostDeploy Include="Dane\DodajDane.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublikujBaze.publish.xml" />
+    <None Include="Dane\KodyPocztowe.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="PaczkaOnline.BazaDanych.refactorlog" />
   </ItemGroup>
 </Project>

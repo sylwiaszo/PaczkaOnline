@@ -125,6 +125,40 @@ namespace PaczkaOnline.Web
             return lokalizacja.Value.ToString() + czasNadania.Value.ToString() + miasto.Value.ToString();
         }
 
+        public void PobierzLokalizacje(string kodPocztowy, ViewDataDictionary viewData)
+        {
+            var kodPocztowyParam = new SqlParameter();
+            kodPocztowyParam.ParameterName = "@KodPocztowy";
+            kodPocztowyParam.Value = kodPocztowy;
+            kodPocztowyParam.DbType = DbType.String;
+
+            var miasto = new SqlParameter();
+            miasto.ParameterName = "@Miasto";
+            miasto.DbType = DbType.String;
+            miasto.Size = 30;
+            miasto.Direction = ParameterDirection.Output;
+
+            var wojewodztwo = new SqlParameter();
+            wojewodztwo.ParameterName = "@Wojewodztwo";
+            wojewodztwo.DbType = DbType.String;
+            wojewodztwo.Size = 20;
+            wojewodztwo.Direction = ParameterDirection.Output;
+
+            var adres = new SqlParameter();
+            adres.ParameterName = "@Adres";
+            adres.DbType = DbType.String;
+            adres.Size = 100;
+            adres.Direction = ParameterDirection.Output;
+
+
+            Database.ExecuteSqlCommand("execute PobierzLokalizacje @KodPocztowy, @Miasto OUT, @Wojewodztwo OUT, @Adres OUT",
+                kodPocztowyParam, miasto, wojewodztwo, adres);
+
+            viewData.Add("Miasto", miasto.Value.ToString());
+            viewData.Add("Adres", adres.Value.ToString());
+            viewData.Add("Wojewodztwo", wojewodztwo.Value.ToString());
+        }
+
         public void GenerujStatystyki(ViewDataDictionary viewData)
         {
             var wyslanoPaczek = new SqlParameter();

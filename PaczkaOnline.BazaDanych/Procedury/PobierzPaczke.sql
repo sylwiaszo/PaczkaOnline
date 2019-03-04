@@ -8,7 +8,7 @@
 	@Lokal VARCHAR(5) OUT
 
 AS
-	IF EXISTS (SELECT * FROM Paczki WHERE Paczki.Id = @id)
+	IF EXISTS (SELECT * FROM Paczki WHERE Paczki.Id = @Id)
 	
 	SELECT @Lokalizacja = Paczki.Lokalizacja, @Nadano = Paczki.CzasNadania, @Miasto = Paczki.Miasto, @KodPocztowy = Paczki.KodPocztowy,
 	@Ulica = Paczki.Ulica, @Lokal = Paczki.Lokal
