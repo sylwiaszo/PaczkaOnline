@@ -27,11 +27,11 @@
                     <h1 class="display-4 text-white font-weight">Znaleziona paczka - @RouteData.Values["KodPaczki"]</h1>
                     <h1 class="display-5 text-white font-weight">Wysłana @ViewData["CzasNadania"]</h1>
                     <h1 class="display-5 text-white font-weight">Paczka obecnie jest w 
-                    @if (@ViewData["Lokalizacja"].ToString() == "00-000")
+                    @if (@ViewData["Lokalizacja"].ToString() == "0")
                     {<span>Oczekuje na wysłanie</span> }
-                    else { @ViewData["Lokalizacja"] }</h1>
+                    else { @ViewData["Miasto"] }</h1>
                     <h1 class="display-4 text-white font-weight">Została wysłana do:</h1>
-                    <h1 class="display-5 text-white font-weight">@ViewData["Miasto"]</h1>
+                    <h1 class="display-5 text-white font-weight">@ViewData["MiastoCel"]</h1>
                     <h1 class="display-5 text-white font-weight">@ViewData["KodPocztowy"]</h1>
                     <h1 class="display-5 text-white font-weight">@ViewData["Ulica"]</h1>
                     <h1 class="display-5 text-white font-weight">@ViewData["Lokal"]</h1>

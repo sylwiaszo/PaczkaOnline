@@ -9,9 +9,14 @@
         <div class="jumbotron bg-dark text-white">
             <h1 class="display-4 text-white font-weight">Statystyki</h1>
             <h4>Wysłano @Model.WyslanoPaczek paczek łącznie.</h4>
-            <h4>Dostarczono @Model.DostarczonoZSukcesem paczek, a @{(Model.WyslanoPaczek - Model.DostarczonoZSukcesem).ToString();}; jest aktualnie w drodze.</h4>
+            <h4>
+                Dostarczono @Model.DostarczonoZSukcesem paczek, a @{
+                    var wyslano = int.Parse(Model.WyslanoPaczek);
+                    var dostarczono = int.Parse(Model.DostarczonoZSukcesem);
+                 @(wyslano - dostarczono)} jest aktualnie w drodze.
+            </h4>
             <h4>@Model.SredniCzasDostarczenia - tyle zajmuje średnio dostarczenie jednej paczki do celu.</h4>
-            <h4>@{((Model.WyslanoPaczek - Model.DostarczonoZSukcesem) / Model.WyslanoPaczek * 100).ToString();}; - to procent dostarczonych paczek.</h4>
+            <h4>@Model.DostarczonoProcent - to procent dostarczonych paczek.</h4>
             <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/">Powrót</a>
         </div>
     </div>

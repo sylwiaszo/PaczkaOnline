@@ -28,7 +28,12 @@ namespace PaczkaOnline.Web.Pages
             {
 
                 if (Guid.TryParse(RouteData.Values["KodPaczki"].ToString(), out Guid kodPaczki))
+                {
                     Dane = db.PobierzPaczke(kodPaczki.ToString(), this.ViewData);
+                    ViewData["MiastoCel"] = ViewData["Miasto"];
+                    ViewData.Remove("Miasto");
+                    db.PobierzLokalizacje(ViewData["Lokalizacja"].ToString(), ViewData);
+                }
             }
         }
 

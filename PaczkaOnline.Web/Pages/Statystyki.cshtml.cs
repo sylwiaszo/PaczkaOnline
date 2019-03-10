@@ -17,17 +17,24 @@ namespace PaczkaOnline.Web.Pages
             this.bazaDanych = bazaDanych;
         }
 
-        public int WyslanoPaczek { get; set; }
-        public int PaczekWDrodze { get; set; }
-        public int DostarczonoZSukcesem { get; set; }
-        public int SredniCzasDostarczenia { get; set; }
+        public string WyslanoPaczek { get; set; }
+        public string PaczekWDrodze { get; set; }
+        public string DostarczonoProcent { get; set; }
+        public string DostarczonoZSukcesem { get; set; }
+        public string SredniCzasDostarczenia { get; set; }
 
         public string KodKreskowy { get; set; }
 
         public void OnGet()
         {
-
             bazaDanych.GenerujStatystyki(ViewData);
+
+            WyslanoPaczek = ViewData["WyslanoPaczek"].ToString();
+            PaczekWDrodze = ViewData["PaczekWDrodze"].ToString();
+            DostarczonoZSukcesem = ViewData["Dostarczono"].ToString();
+            DostarczonoProcent = ViewData["DostarczonoProcent"].ToString();
+            SredniCzasDostarczenia = ViewData["SredniCzasDostarczenia"].ToString();
+
         }
     }
 }
