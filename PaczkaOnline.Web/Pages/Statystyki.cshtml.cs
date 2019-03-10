@@ -36,5 +36,15 @@ namespace PaczkaOnline.Web.Pages
             SredniCzasDostarczenia = ViewData["SredniCzasDostarczenia"].ToString();
 
         }
+
+        public void OnPost(string hasloAdmin)
+        {
+            if(hasloAdmin == "statystyki2019")
+            {
+                var adminBytes = Encoding.UTF8.GetBytes("admin");
+                HttpContext.Session.Set("admin", adminBytes);
+                OnGet();
+            }
+        }
     }
 }

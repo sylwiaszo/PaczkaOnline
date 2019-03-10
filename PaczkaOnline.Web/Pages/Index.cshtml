@@ -4,6 +4,15 @@
     ViewData["Title"] = "Strona Główna";
 }
 
+@{
+    HttpContext.Session.TryGetValue("admin", out byte[] zalogowanyBytes);
+    string zalogowany;
+    if (zalogowanyBytes != null)
+    { zalogowany = System.Text.UTF8Encoding.UTF8.GetString(zalogowanyBytes); }
+    else
+    { zalogowany = "brak"; }
+}
+
 <div class="jumbotron pelny-ekran my-0" style="background-image:url('/images/kurier.jpg'); position:absolute; left: 0; top:0;">
     <h1 class="display-4 text-white font-weight">Poczta Online</h1>
     <p class="lead text-white">Błyskawicznie nadaj nową paczkę lub sprawdź gdzie jest Twoja paczka!</p>
@@ -11,5 +20,10 @@
     <p class="text-white font-weight-bold">Użyj tych przycisków aby szybko wysłać paczkę lub podejrzeć, <br /> gdzie aktualnie znajduje się paczka na którą czekasz.</p>
     <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/Wysylam">Wysyłam Paczkę</a>
     <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/Czekam">Czekam na Paczkę</a>
+    <br />
+    <a class="btn btn-outline-light mt-5 biala-ramka font-weight-bold cien" href="/statystyki">Statystyki - Administrator</a>
+    @if (zalogowany == "admin")
+    {<a class="btn btn-outline-light mt-5 biala-ramka font-weight-bold cien" href="/wyloguj">Wyloguj</a>}
 </div>
+
 

@@ -4,21 +4,51 @@
     ViewData["Title"] = "Statystyki";
 }
 
-<div class="row my-4">
-    <div class="col">
-        <div class="jumbotron bg-dark text-white">
-            <h1 class="display-4 text-white font-weight">Statystyki</h1>
-            <h4>Wysłano @Model.WyslanoPaczek paczek łącznie.</h4>
-            <h4>
-                Dostarczono @Model.DostarczonoZSukcesem paczek, a @{
-                    var wyslano = int.Parse(Model.WyslanoPaczek);
-                    var dostarczono = int.Parse(Model.DostarczonoZSukcesem);
-                 @(wyslano - dostarczono)} jest aktualnie w drodze.
-            </h4>
-            <h4>@Model.SredniCzasDostarczenia - tyle zajmuje średnio dostarczenie jednej paczki do celu.</h4>
-            <h4>@Model.DostarczonoProcent - to procent dostarczonych paczek.</h4>
-            <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/">Powrót</a>
+@{
+    HttpContext.Session.TryGetValue("admin", out byte[] zalogowanyBytes);
+    string zalogowany;
+    if (zalogowanyBytes != null)
+    { zalogowany = System.Text.UTF8Encoding.UTF8.GetString(zalogowanyBytes); }
+    else
+    { zalogowany = "brak"; }
+}
+
+@if (zalogowany != "admin")
+{
+    <div class="row my-4">
+        <div class="col">
+            <div class="jumbotron bg-dark text-white">
+                <h1 class="display-4 text-white font-weight">Podaj hasło do panelu statystyk:</h1>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="hasloAdmin" class="text-white">Hasło:</label>
+                        <input type="password" class="form-control" id="hasloAdmin" name="hasloAdmin" aria-describedby="hasloAdminPomoc" placeholder="Hasło do panelu">
+                        <small id="hasloAdminPomoc" class="form-text text-light">Hasło umożliwiające wejście do panelu statystyk.</small>
+                    </div>
+                    <button class="btn btn-success" type="submit">Sprawdź</button>
+                </form>
+                <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/">Powrót</a>
+            </div>
         </div>
     </div>
-</div>
-
+}
+else
+{
+    <div class="row my-4">
+        <div class="col">
+            <div class="jumbotron bg-dark text-white">
+                <h1 class="display-4 text-white font-weight">Statystyki</h1>
+                <h4>Wysłano @Model.WyslanoPaczek paczek łącznie.</h4>
+                <h4>
+                    Dostarczono @Model.DostarczonoZSukcesem paczek, a @{
+                        var wyslano = int.Parse(Model.WyslanoPaczek);
+                        var dostarczono = int.Parse(Model.DostarczonoZSukcesem);
+                        @(wyslano - dostarczono)} jest aktualnie w drodze.
+                </h4>
+                <h4>@Model.SredniCzasDostarczenia - tyle zajmuje średnio dostarczenie jednej paczki do celu.</h4>
+                <h4>@Model.DostarczonoProcent - to procent dostarczonych paczek.</h4>
+                <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/">Powrót</a>
+            </div>
+        </div>
+    </div>
+}

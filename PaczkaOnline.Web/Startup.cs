@@ -24,6 +24,7 @@ namespace PocztaOnline.Aplikacja
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSession();
             services.AddDbContext<BazaDanych>(opt => opt.UseSqlServer("Data Source=DESKTOP-G7VBEC5;Initial Catalog=PaczkaOnline.BazaDanych;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
             services.AddTransient<IWysylaczEmail, WysylaczEmail>();
             services.AddTransient<KodKreskowyGenerator>();
@@ -43,7 +44,7 @@ namespace PocztaOnline.Aplikacja
             }
 
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseMvc();
         }
     }
