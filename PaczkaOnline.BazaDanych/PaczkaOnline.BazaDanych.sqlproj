@@ -76,6 +76,8 @@
     <Build Include="Procedury\PobierzPaczke.sql" />
     <Build Include="Procedury\GenerujStatystyki.sql" />
     <Build Include="Procedury\PobierzLokalizacje.sql" />
+    <Build Include="Procedury\PobierzNadawce.sql" />
+    <Build Include="Procedury\PobierzOdbiorce.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Dane\DodajDane.sql" />

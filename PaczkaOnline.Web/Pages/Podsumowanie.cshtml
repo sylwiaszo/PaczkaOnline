@@ -8,9 +8,7 @@
     <div class="col">
         <div class="jumbotron bg-dark">
             <h1 class="display-4 text-white font-weight">Udało Ci się wysłać paczkę!</h1>
-            <h1 class="display-5 text-white font-weight">@RouteData.Values["KodPocztowy"], @ViewData["Miasto"]</h1>
-            <h1 class="display-5 text-white font-weight">@ViewData["Adres"], @ViewData["Wojewodztwo"]</h1>
-            <h1 class="display-5 text-white font-weight">Wysłaliśmy powiadomienie na adres @ViewData["Email"]</h1>
+            <h1 class="display-5 text-white font-weight">Wysłaliśmy powiadomienie na adres @RouteData.Values["Email"]</h1>
             <p class="lead text-white">
                 Poniższy kod służy do śledzenia Twojej paczki,
                 użyj wyszukiwarki na górze strony, bądź wprowadź kod po znaku "/" w adresie naszej strony.

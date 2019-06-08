@@ -1,45 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using PaczkaOnline.Web.Powiadomienia;
+using System.Data.SqlClient;
 
 namespace PaczkaOnline.Web
 {
-    [Route("api/zarzadzaj")]
-    public class ZarzadzajController : Controller
-    {
-        private readonly BazaDanych bazaDanych;
-        private readonly IWysylaczEmail email;
+	[Route("api/zarzadzaj")]
+	public class ZarzadzajController : Controller
+	{
+		private readonly BazaDanych bazaDanych;
+		private readonly IPowiadomienieGenerator powiadomienia;
 
-        public ZarzadzajController(BazaDanych bazaDanych, IWysylaczEmail email)
-        {
-            this.bazaDanych = bazaDanych;
-            this.email = email;
-        }
+		public ZarzadzajController(BazaDanych bazaDanych, IPowiadomienieGenerator powiadomienia)
+		{
+			this.bazaDanych = bazaDanych;
+			this.powiadomienia = powiadomienia;
+		}
 
-        [Route("dostarczono"), HttpPost]
-        public IActionResult DostarczonoPaczke(string idPaczki)
-        {
-            bazaDanych.Database.ExecuteSqlCommand("execute AktualizujStatusPaczki @paczka @dostarczona",
-                new SqlParameter("@paczka", idPaczki),
-                new SqlParameter("@dostarczona", true));
+		[Route("dostarczono"), HttpPost]
+		public IActionResult DostarczonoPaczke(string idPaczki)
+		{
+			bazaDanych.Database.ExecuteSqlCommand("execute AktualizujStatusPaczki @paczka @dostarczona",
+				new SqlParameter("@paczka", idPaczki),
+				new SqlParameter("@dostarczona", true));
 
-            return StatusCode(200);
-        }
+			var paczka = bazaDanych.PobierzPaczke(idPaczki);
+			var nadawca = bazaDanych.PobierzNadawce(paczka.Nadawca);
+			var odbiorca = bazaDanych.PobierzOdbiorce(paczka.Odbiorca);
 
-        [Route("lokalizacja"), HttpPost]
-        public IActionResult LokalizacjaPaczki(string idPaczki, string lokaliizacja)
-        {
-            bazaDanych.Database.ExecuteSqlCommand("execute AktualizujLokalizacjePaczki @paczka @lokalizacja",
-                new SqlParameter("@paczka", idPaczki),
-                new SqlParameter("@lokalizacja", lokaliizacja));
+			powiadomienia.DodajPowiadomienie(TypPowiadomienia.EMAIL, nadawca.Email, "Twoja paczka została odebrana.");
+			powiadomienia.Wyslij();
 
-            return StatusCode(200);
-        }
-    }
+			return StatusCode(200);
+		}
+
+		[Route("lokalizacja"), HttpPost]
+		public IActionResult LokalizacjaPaczki(string idPaczki, string lokaliizacja)
+		{
+			bazaDanych.Database.ExecuteSqlCommand("execute AktualizujLokalizacjePaczki @paczka @lokalizacja",
+				new SqlParameter("@paczka", idPaczki),
+				new SqlParameter("@lokalizacja", lokaliizacja));
+
+			var paczka = bazaDanych.PobierzPaczke(idPaczki);
+			var nadawca = bazaDanych.PobierzNadawce(paczka.Nadawca);
+			var odbiorca = bazaDanych.PobierzOdbiorce(paczka.Odbiorca);
+
+			powiadomienia.DodajPowiadomienie(TypPowiadomienia.EMAIL, nadawca.Email, $"Twoja paczka jest teraz w {lokaliizacja}");
+			powiadomienia.DodajPowiadomienie(TypPowiadomienia.SMS, odbiorca.Email, $"Twoja paczka jest teraz w {lokaliizacja}");
+			powiadomienia.Wyslij();
+
+			return StatusCode(200);
+		}
+	}
 }

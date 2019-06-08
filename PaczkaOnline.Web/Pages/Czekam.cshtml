@@ -1,7 +1,7 @@
 ﻿@page "/Czekam/{KodPaczki?}"
 @model PaczkaOnline.Web.Pages.CzekamModel
 @{
-    ViewData["Title"] = "Czekam";
+    ViewData["Title"] = "Czekam na paczkę";
 }
 
 <div class="row my-4">
@@ -21,25 +21,33 @@
                     <button class="btn btn-success" type="submit">Sprawdź</button>
                 </form>
             }
-            else
+            else if (Model.Paczka != null)
             {
                 <div class="text-white">
-                    <h1 class="display-4 text-white font-weight">Znaleziona paczka - @RouteData.Values["KodPaczki"]</h1>
-                    <h1 class="display-5 text-white font-weight">Wysłana @ViewData["CzasNadania"]</h1>
-                    <h1 class="display-5 text-white font-weight">Paczka obecnie jest w 
-                    @if (@ViewData["Lokalizacja"].ToString() == "0")
-                    {<span>Oczekuje na wysłanie</span> }
-                    else { @ViewData["Miasto"] }</h1>
+                    <h1 class="display-4 text-white font-weight">Znaleziona paczka - @Model.Paczka.Id</h1>
+                    <h1 class="display-5 text-white font-weight">Wysłana @Model.Paczka.CzasNadania</h1>
+                    <h1 class="display-5 text-white font-weight">
+
+                        @if (Model.Paczka.Lokalizacja.Trim() == "0")
+                        {
+                            <span>Oczekuje na pobranie przez kuriera</span> }
+                        else
+                        {
+                            <span>Paczka obecnie jest w</span>
+                            <h3>@ViewData["Adres"]</h3>
+                            <h3>@ViewData["Miasto"], @ViewData["Wojewodztwo"]</h3>
+                        }
+                    </h1>
                     <h1 class="display-4 text-white font-weight">Została wysłana do:</h1>
-                    <h1 class="display-5 text-white font-weight">@ViewData["MiastoCel"]</h1>
-                    <h1 class="display-5 text-white font-weight">@ViewData["KodPocztowy"]</h1>
-                    <h1 class="display-5 text-white font-weight">@ViewData["Ulica"]</h1>
-                    <h1 class="display-5 text-white font-weight">@ViewData["Lokal"]</h1>
+                    <h1 class="display-5 text-white font-weight">@Model.Paczka.Ulica/@Model.Paczka.Lokal</h1>
+                    <h1 class="display-5 text-white font-weight">@Model.Paczka.KodPocztowy, @Model.Paczka.Miasto</h1>
                     <hr class="my-4">
                     <a class="btn btn-outline-light mt-4 biala-ramka font-weight-bold cien" href="/">Powrót</a>
-
-
                 </div>
+            }
+            else
+            {
+                <h1 class="display-4 text-white font-weight">Niestety nie mamy twojej paczki w systemie. </h1>
             }
         </div>
     </div>

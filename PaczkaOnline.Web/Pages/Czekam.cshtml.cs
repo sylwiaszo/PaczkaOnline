@@ -1,45 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using PaczkaOnline.Web.Paczki;
+using System;
 
 namespace PaczkaOnline.Web.Pages
 {
-    public class CzekamModel : PageModel
-    {
-        private readonly BazaDanych db;
+	public class CzekamModel : PageModel
+	{
+		private readonly BazaDanych db;
 
-        public CzekamModel(BazaDanych db)
-        {
-            this.db = db;
-        }
+		public Paczka Paczka;
 
-        [BindProperty]
-        public string Dane { get; set; }
-        [BindProperty]
-        public string KodPaczki2 { get; set; }
+		public CzekamModel(BazaDanych db)
+		{
+			this.db = db;
+		}
 
-        public void OnGet()
-        {
-            if (RouteData.Values != null && RouteData.Values["KodPaczki"] != null)
-            {
+		[BindProperty]
+		public string KodPaczki2 { get; set; }
 
-                if (Guid.TryParse(RouteData.Values["KodPaczki"].ToString(), out Guid kodPaczki))
-                {
-                    Dane = db.PobierzPaczke(kodPaczki.ToString(), this.ViewData);
-                    ViewData["MiastoCel"] = ViewData["Miasto"];
-                    ViewData.Remove("Miasto");
-                    db.PobierzLokalizacje(ViewData["Lokalizacja"].ToString(), ViewData);
-                }
-            }
-        }
+		public void OnGet()
+		{
+			if (RouteData.Values != null && RouteData.Values["KodPaczki"] != null)
+			{
 
-        public IActionResult OnPost()
-        {
-            return RedirectToPage("/Czekam", new { KodPaczki = KodPaczki2 });
-        }
-    }
+				if (Guid.TryParse(RouteData.Values["KodPaczki"].ToString(), out Guid kodPaczki))
+				{
+					Paczka = db.PobierzPaczke(kodPaczki.ToString());
+					db.PobierzLokalizacje(Paczka.Lokalizacja, ViewData);
+				}
+			}
+		}
+
+		public IActionResult OnPost()
+		{
+			return RedirectToPage("/Czekam", new { KodPaczki = KodPaczki2 });
+		}
+	}
 }
